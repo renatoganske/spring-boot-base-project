@@ -1,4 +1,4 @@
-package com.renatoganske.springbootbaseproject.domain;
+package com.renatoganske.springbootbaseproject.domain.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
