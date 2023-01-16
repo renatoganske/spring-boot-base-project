@@ -2,17 +2,15 @@ package com.renatoganske.springbootbaseproject.domain.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "Authentications")
 @Getter
 @Setter
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Authentication {
 
     @Id
@@ -27,6 +25,6 @@ public class Authentication {
     private Boolean status;
 
     @OneToOne
-    @JoinColumn(name = "personId", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 }

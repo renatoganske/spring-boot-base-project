@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class UserRequest {
+public class UserModelRequest {
 
     private Long personId;
     @NotEmpty(message = "required.name.validation")
