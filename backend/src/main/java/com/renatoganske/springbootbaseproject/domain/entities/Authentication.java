@@ -2,7 +2,6 @@ package com.renatoganske.springbootbaseproject.domain.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.*;
 
 @Entity
 @Table(name = "Authentications")
@@ -19,18 +18,11 @@ public class Authentication {
     @Column(nullable = false)
     private Boolean status;
 
-    @OneToOne
-    @JoinColumn(name = "userId", nullable = false)
+
+    @OneToOne(mappedBy = "authentication")
     private User user;
 
     public Authentication() {
-    }
-
-    public Authentication(Long idAuth, String password, Boolean status, User user) {
-        this.idAuth = idAuth;
-        this.password = password;
-        this.status = status;
-        this.user = user;
     }
 
     public Authentication(String password, Boolean status, User user) {

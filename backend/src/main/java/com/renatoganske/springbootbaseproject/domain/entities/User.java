@@ -3,7 +3,6 @@ package com.renatoganske.springbootbaseproject.domain.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
 
 import java.time.LocalDate;
 
@@ -36,7 +35,8 @@ public class User {
         @NotNull
         private LocalDate birthDate;
 
-        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+        @OneToOne(cascade = CascadeType.ALL)
+        @JoinColumn(name = "userId")
         private Authentication authentication;
 
         public User() {
