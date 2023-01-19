@@ -13,10 +13,8 @@ public interface UserMapperRequest {
     @Mapping(target = "email", source = "email")
     @Mapping(target = "phone", source = "phone")
     @Mapping(target = "birthDate", source = "birthDate")
-    @Mapping(target = "authentication.status", source = "status")
-    @Mapping(target = "authentication.password", source = "password")
-//    @Mapping(target = "authentication.user",
-//            expression = "java(userModelRequest.getUserId())")
+    @Mapping(target = "status", source = "status")
+    @Mapping(target = "password", source = "password")
     User convert(UserModelRequest userModelRequest);
 
 }

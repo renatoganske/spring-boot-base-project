@@ -35,22 +35,12 @@ public class User {
         @NotNull
         private LocalDate birthDate;
 
-        @OneToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "userId")
-        private Authentication authentication;
+        @NotEmpty
+        @Column(length = 255, nullable = false)
+        private String password;
 
-        public User() {
-        }
-
-        public User(Long userId, String name, String lastname, String email, String phone, LocalDate birthDate, Authentication authentication) {
-                this.userId = userId;
-                this.name = name;
-                this.lastname = lastname;
-                this.email = email;
-                this.phone = phone;
-                this.birthDate = birthDate;
-                this.authentication = authentication;
-        }
+        @Column(nullable = false)
+        private Boolean status;
 
         public Long getUserId() {
                 return userId;
@@ -100,11 +90,19 @@ public class User {
                 this.birthDate = birthDate;
         }
 
-        public Authentication getAuthentication() {
-                return authentication;
+        public String getPassword() {
+                return password;
         }
 
-        public void setAuthentication(Authentication authentication) {
-                this.authentication = authentication;
+        public void setPassword(String password) {
+                this.password = password;
+        }
+
+        public Boolean getStatus() {
+                return status;
+        }
+
+        public void setStatus(Boolean status) {
+                this.status = status;
         }
 }

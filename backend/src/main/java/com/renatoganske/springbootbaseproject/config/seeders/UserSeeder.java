@@ -1,6 +1,5 @@
 package com.renatoganske.springbootbaseproject.config.seeders;
 
-import com.renatoganske.springbootbaseproject.domain.entities.Authentication;
 import com.renatoganske.springbootbaseproject.domain.entities.User;
 import com.renatoganske.springbootbaseproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +21,6 @@ public class UserSeeder implements CommandLineRunner {
 
     private void databaseSeederUser() {
         if (userRepository.count() == 0) {
-
-            Authentication auth = new Authentication();
-            auth.setIdAuth(1L);
-            auth.setStatus(true);
-            //senha temporária
-            auth.setPassword("admin123");
             User seeder = new User();
             seeder.setUserId(1L);
             seeder.setName("Admin");
@@ -35,8 +28,9 @@ public class UserSeeder implements CommandLineRunner {
             seeder.setEmail("admin@admin.com");
             seeder.setPhone("(47)99999-9999");
             seeder.setBirthDate(LocalDate.now());
-            seeder.setAuthentication(auth);
-            auth.setUser(seeder);
+            //senha temporária
+            seeder.setPassword("admin123");
+            seeder.setStatus(true);
             userRepository.save(seeder);
         }
     }

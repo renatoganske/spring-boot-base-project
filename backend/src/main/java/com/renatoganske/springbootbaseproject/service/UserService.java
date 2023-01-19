@@ -36,7 +36,6 @@ public class UserService {
     }
 
     public ResponseEntity<UserModelResponse> findById(Long id) {
-
         var userOptional = userRepository.findById(id);
         if (userOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -45,10 +44,8 @@ public class UserService {
     }
 
     public UserModelResponse save(@RequestBody UserModelRequest userModelRequest) {
-
         User user = userMapperRequest.convert(userModelRequest);
-        UserModelResponse userModelResponse = userMapperResponse.convert(user);
         userRepository.save(user);
-        return userModelResponse;
+        return userMapperResponse.convert(user);
     }
 }

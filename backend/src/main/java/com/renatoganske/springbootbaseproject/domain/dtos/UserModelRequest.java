@@ -1,9 +1,6 @@
 package com.renatoganske.springbootbaseproject.domain.dtos;
 
-import com.renatoganske.springbootbaseproject.domain.entities.Authentication;
-import com.renatoganske.springbootbaseproject.domain.entities.User;
 import jakarta.validation.constraints.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
