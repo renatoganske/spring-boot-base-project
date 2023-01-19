@@ -1,8 +1,8 @@
 package com.renatoganske.springbootbaseproject.domain.dtos;
 
-import com.renatoganske.springbootbaseproject.domain.entities.Authentication;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
@@ -10,9 +10,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+//@Builder
+@RequiredArgsConstructor
 public class UserModelRequest {
 
-    private Long personId;
+    private Long userId;
     @NotEmpty(message = "required.name.validation")
     @Size(min = 3, max = 45, message = "user.size.validation")
     private String name;
@@ -39,5 +41,20 @@ public class UserModelRequest {
 
     private Boolean status;
 
-    private Authentication auth;
+//    public User convertToUser() {
+//        User user = new User(0L,
+//                this.name,
+//                this.lastname,
+//                this.email,
+//                this.phone,
+//                this.birthDate,
+//                new Authentication(
+//                        this.password,
+//                        this.status,
+//                        null
+//                )
+//        );
+//        user.getAuthentication().setUser(user);
+//        return user;
+//    }
 }

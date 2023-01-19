@@ -20,13 +20,4 @@ public class UserModelResponse {
     private LocalDate birthDate;
     private boolean status;
 
-    public UserModelResponse(User personEntity) {
-        this.userId = personEntity.getUserId();
-        this.name = personEntity.getName();
-        this.lastname = personEntity.getLastname();
-        this.email = personEntity.getEmail();
-        this.phone = personEntity.getPhone();
-        this.birthDate = personEntity.getBirthDate();
-        this.status = personEntity.getAuthentication().getStatus();
-    }
 }

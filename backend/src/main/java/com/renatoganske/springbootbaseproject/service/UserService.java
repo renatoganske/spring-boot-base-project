@@ -1,13 +1,16 @@
 package com.renatoganske.springbootbaseproject.service;
 
+import com.renatoganske.springbootbaseproject.domain.dtos.UserModelRequest;
 import com.renatoganske.springbootbaseproject.domain.dtos.UserModelResponse;
 import com.renatoganske.springbootbaseproject.domain.entities.User;
-import com.renatoganske.springbootbaseproject.domain.mapper.UserMapper;
+import com.renatoganske.springbootbaseproject.domain.mapper.UserMapperRequest;
+import com.renatoganske.springbootbaseproject.domain.mapper.UserMapperResponse;
 import com.renatoganske.springbootbaseproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,25 +22,30 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private UserMapper userMapper;
+    private UserMapperResponse userMapperResponse;
 
-    public ResponseEntity<List<UserModelResponse>> getAll() {
+    @Autowired
+    private UserMapperRequest userMapperRequest;
+
+
+    public ResponseEntity<List<UserModelResponse>> findAll() {
         var roleEntity = userRepository.findAll()
                 .stream()
-                .map(user -> userMapper.convert(user));
+                .map(user -> userMapperResponse.convert(user));
         return ResponseEntity.ok().body(roleEntity.collect(Collectors.toList()));
     }
 
     public ResponseEntity<UserModelResponse> findById(Long id) {
-
         var userOptional = userRepository.findById(id);
-        if(userOptional.isEmpty()) {
+        if (userOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).body(userMapper.convert(userOptional.get()));
+        return ResponseEntity.status(HttpStatus.OK).body(userMapperResponse.convert(userOptional.get()));
     }
 
-    public User execute(User user) throws Exception {
-        return userRepository.save(user);
+    public UserModelResponse save(@RequestBody UserModelRequest userModelRequest) {
+        User user = userMapperRequest.convert(userModelRequest);
+        userRepository.save(user);
+        return userMapperResponse.convert(user);
     }
 }
